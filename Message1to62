@@ -1,0 +1,585 @@
+###########################################Testcase1###########################################################################
+import uiautomator2 as ui2
+import time
+import subprocess
+
+# Connect to the devices
+receiver_device_serial = "192.168.2.92:5555"
+receiver_device = ui2.Device(receiver_device_serial)
+time.sleep(2)
+receiver_device(text="Messages").click()
+time.sleep(2)
+receiver_device(text="AAAAA").click()
+time.sleep(2)
+receiver_device(resourceId="com.google.android.apps.messaging:id/compose_message_text").set_text("hellothisis shubham")
+time.sleep(2)
+receiver_device(resourceId="com.google.android.apps.messaging:id/send_message_button_container").click()
+time.sleep(2)
+receiver_device(resourceId="com.android.systemui:id/back").click()
+time.sleep(2)
+receiver_device(resourceId="com.android.systemui:id/back").click()
+print("Test case MSG_01 pass")
+
+######################################Testcase2#####################################################################
+receiver_device(text="Start chat").click()
+time.sleep(2)
+receiver_device(text="Type names, phone numbers or emails").set_text("AAAAA")
+time.sleep(2)
+if receiver_device(text="Mobile 084486 97488").exists():
+ time.sleep(2)
+receiver_device(resourceId="com.android.systemui:id/back").click()
+time.sleep(2)
+receiver_device(resourceId="com.android.systemui:id/back").click()
+print("contact search succesful and Test case MSG_02 pass")
+
+##############################################Testcase3####################################################################
+
+receiver_device(text="AAAAA").click()
+time.sleep(2)
+if receiver_device(resourceId="com.google.android.apps.messaging:id/tombstone_message").exists():
+    print("Message recieved by shubham and test casE MSG_03 pass")
+receiver_device(resourceId="com.android.systemui:id/back").click()
+##########################################Testcase4##########################################################################
+receiver_device(text="Shubham").click()
+time.sleep(2)
+receiver_device(resourceId="com.google.android.apps.messaging:id/compose_message_text").click()
+time.sleep(2)
+receiver_device(resourceId="com.google.android.inputmethod.latin:id/key_pos_switch_to_next_language").click()
+time.sleep(2)
+receiver_device(resourceId="com.google.android.inputmethod.latin:id/key_pos_switch_to_next_language").click()
+time.sleep(2)
+receiver_device.xpath('//*[@resource-id="com.google.android.inputmethod.latin:id/key_pos_1_0"]/android.widget.TextView[1]').click()
+time.sleep(2)
+receiver_device.xpath('//*[@resource-id="com.google.android.inputmethod.latin:id/key_pos_1_1"]/android.widget.TextView[1]').click()
+time.sleep(2)
+receiver_device.xpath('//*[@resource-id="com.google.android.inputmethod.latin:id/key_pos_1_2"]/android.widget.TextView[1]').click()
+time.sleep(2)
+if receiver_device(resourceId="com.google.android.apps.messaging:id/compose_message_text",text="कखग").exists():
+    print("Message printed in hindi")
+print("Message printed in hindi and test case MSG_04 pass")
+
+time.sleep(2)
+receiver_device(resourceId="com.android.systemui:id/back").click()
+time.sleep(2)
+receiver_device(resourceId="com.android.systemui:id/back").click()
+time.sleep(2)
+####################################################Testcase5################################################################
+receiver_device(text="Shubham").click()
+time.sleep(2)
+receiver_device(resourceId="com.google.android.apps.messaging:id/compose_message_text").click()
+time.sleep(2)
+receiver_device.xpath('//*[@resource-id="com.google.android.inputmethod.latin:id/key_pos_del"]/android.widget.ImageView[1]').click()
+time.sleep(2)
+receiver_device.xpath('//*[@resource-id="com.google.android.inputmethod.latin:id/key_pos_del"]/android.widget.ImageView[1]').click()
+time.sleep(2)
+receiver_device.xpath('//*[@resource-id="com.google.android.inputmethod.latin:id/key_pos_del"]/android.widget.ImageView[1]').click()
+time.sleep(2)
+receiver_device(resourceId="com.android.systemui:id/back").click()
+time.sleep(2)
+receiver_device(resourceId="com.google.android.apps.messaging:id/compose_message_text").set_text("THISISSHUBHAMPALSINGH")
+time.sleep(2)
+receiver_device(resourceId="com.google.android.apps.messaging:id/send_message_button_container").click()
+time.sleep(2)
+receiver_device(resourceId="com.android.systemui:id/back").click()
+time.sleep(2)
+receiver_device(resourceId="com.android.systemui:id/back").click()
+time.sleep(2)
+print("Test case MSG_05 pass")
+######################################################Testcase6###############################################################
+receiver_device(text="Shubham").click()
+time.sleep(2)
+receiver_device(resourceId="com.google.android.apps.messaging:id/compose_message_text").set_text("THISISSHUBHAMPALSINGH")
+time.sleep(2)
+receiver_device(resourceId="com.android.systemui:id/back").click()
+time.sleep(2)
+receiver_device(resourceId="com.android.systemui:id/back").click()
+time.sleep(2)
+print("Test case MSG_06 is pass")
+receiver_device(resourceId="com.google.android.apps.messaging:id/conversation_name", text="Shubham").click()
+time.sleep(2)
+receiver_device(resourceId="com.google.android.apps.messaging:id/send_message_button_container").click()
+#######################################################Testcase7#################################################################
+receiver_device(text="Shubham").click()
+time.sleep(2)
+if receiver_device(text="Texting with Shubham  (SMS/MMS)").exists():
+    print("Able to get into correct contact")
+print("testcase MSG_07 is pass")
+receiver_device(resourceId="com.android.systemui:id/back").click()
+#####################################################Testcase8##################################################################
+if receiver_device(text="AAAAA").exists():
+ print("The contacts are available")
+else:
+ print("The contacts are not available")
+print("Test case MSG_08 is pass")
+time.sleep(2)
+################################################Testcase9######################################################################
+# Define the initial swipe coordinates
+start_x = 500
+start_y = 500
+end_y = 1500
+swipe_duration = 0.5
+
+# Perform multiple swipes to scroll the screen downwards
+num_swipes = 1  # Adjust the number of swipes as needed
+for _ in range(num_swipes):
+    receiver_device.swipe(start_x, start_y, start_x, end_y, duration=swipe_duration)
+    time.sleep(1)  # Adjust the delay between swipes if necessary
+
+if receiver_device(text="Messages").exists and receiver_device(text="now").exists():
+    print("Both 'Messages' and 'now' texts exist on the screen")
+else:
+    print("Either 'Messages' or 'now' text is missing")
+print("Test case MSG_09 is pass")
+receiver_device(resourceId="com.android.systemui:id/back").click()
+time.sleep(2)
+receiver_device(resourceId="com.android.systemui:id/back").click()
+time.sleep(2)
+###############################################Testcase10######################################################################
+receiver_device(text="Messages").click()
+time.sleep(2)
+receiver_device(resourceId="com.google.android.apps.messaging:id/conversation_name", text="Shubham").click()
+time.sleep(2)
+receiver_device(resourceId="com.google.android.apps.messaging:id/compose_message_text").set_text("THISISSHUBHAMPALSINGH")
+time.sleep(2)
+receiver_device(resourceId="com.google.android.apps.messaging:id/send_message_button_container").click()
+time.sleep(4)
+
+if receiver_device(resourceId="com.google.android.apps.messaging:id/status_icon").exists():
+    print("Message is delivered")
+receiver_device(resourceId="com.android.systemui:id/back").click()
+time.sleep(2)
+receiver_device(resourceId="com.android.systemui:id/back").click()
+time.sleep(2)
+print("Test case MSG_10 is pass")
+###############################################Testcase11######################################################################
+
+receiver_device(text="Shubham").click()
+time.sleep(2)
+receiver_device(resourceId="com.google.android.apps.messaging:id/compose_message_text").set_text("THISISSHUBHAMPALSINGH")
+time.sleep(2)
+receiver_device(resourceId="com.google.android.apps.messaging:id/send_message_button_container").click()
+time.sleep(2)
+
+# Perform a long press on the audio button using swipe
+audio_button = receiver_device(resourceId="com.google.android.apps.messaging:id/audio_button_view_microphone_icon")
+start_x, start_y = audio_button.center()
+end_x, end_y = start_x, start_y
+duration = 2  # Specify the duration for the long press in seconds
+receiver_device.swipe(start_x, start_y, end_x, end_y, duration=duration)
+
+# Add a delay to allow time for the long press action to take effect
+time.sleep(2)
+receiver_device(resourceId="com.google.android.apps.messaging:id/send_message_button_container").click()
+# Check if the voice icon is displayed on the screen
+if receiver_device(resourceId="com.google.android.apps.messaging:id/message_attachments_container").exists():
+    print("Voice icon is displaying on the screen")
+else:
+    print("Voice icon is not displaying on the screen")
+print("Test case MSG_14 is pass")
+# Navigate back
+receiver_device(resourceId="com.android.systemui:id/back").click()
+time.sleep(2)
+receiver_device(resourceId="com.android.systemui:id/back").click()
+############################################Testcase15###################################################################
+
+receiver_device(resourceId="com.google.android.apps.messaging:id/og_apd_internal_image_view").click()
+time.sleep(2)
+# Navigate to the "Messages settings"
+receiver_device(text="Messages settings").click()
+time.sleep(2)
+
+# Scroll to the end of the screen
+receiver_device(scrollable=True).scroll.toEnd(steps=10)
+time.sleep(2)
+
+# Scroll to the beginning of the screen
+receiver_device(scrollable=True).scroll.toBeginning(steps=10)
+time.sleep(2)
+
+# Check if the "Settings" text is present on the screen
+if receiver_device(text="Settings").exists():
+    print("Setting page is open")
+else:
+    print("Setting page is not open")
+print("Testcase MSG_15 is pass")
+time.sleep(2)
+receiver_device(resourceId="com.android.systemui:id/back").click()
+###########################################Testcase 16##############################################################
+time.sleep(2)
+receiver_device(text="Shubham").click()
+time.sleep(2)
+receiver_device(resourceId="com.android.systemui:id/back").click()
+time.sleep(2)
+print("we are in message interface")
+time.sleep(2)
+print("test case MSG_16 pass")
+receiver_device(resourceId="com.android.systemui:id/back").click()
+#############################################Testcase17############################################################################
+receiver_device(text="Messages").click()
+time.sleep(2)
+receiver_device(text="Shubham").click()
+time.sleep(2)
+receiver_device(resourceId="com.google.android.apps.messaging:id/compose_message_text").click()
+time.sleep(2)
+receiver_device.xpath('//*[@resource-id="com.google.android.inputmethod.latin:id/key_pos_1_1"]/android.widget.TextView[1]').click()
+time.sleep(2)
+receiver_device.xpath('//*[@resource-id="com.google.android.inputmethod.latin:id/key_pos_1_5"]/android.widget.TextView[1]').click()
+# Check if the compose message text field contains the text "Sh"
+compose_message_text = receiver_device(resourceId="com.google.android.apps.messaging:id/compose_message_text").get_text()
+if "Sh" in compose_message_text:
+    print("Keypad used with sounds")
+else:
+    print("Keypad not used")
+print("Testcase MSG_17 is pass")
+receiver_device(resourceId="com.google.android.apps.messaging:id/compose_message_text").click()
+time.sleep(2)
+receiver_device.xpath('//*[@resource-id="com.google.android.inputmethod.latin:id/key_pos_del"]/android.widget.ImageView[1]').click()
+time.sleep(2)
+receiver_device.xpath('//*[@resource-id="com.google.android.inputmethod.latin:id/key_pos_del"]/android.widget.ImageView[1]').click()
+time.sleep(2)
+receiver_device(resourceId="com.android.systemui:id/back").click()
+time.sleep(2)
+receiver_device(resourceId="com.android.systemui:id/back").click()
+####################################################testcase19###################################################################
+receiver_device(text="AAAAA").click()
+time.sleep(2)
+if receiver_device(text="AAAAA").exists():
+ print("Contacts are available")
+else:
+ print("Contacts are not available")
+print("Testcase MSG_19 is pass")
+time.sleep(2)
+receiver_device(resourceId="com.android.systemui:id/back").click()
+##################################################Testcase20####################################################################
+# Click on "AAAAA"
+receiver_device(text="AAAAA").click()
+time.sleep(2)
+receiver_device(resourceId="com.google.android.apps.messaging:id/compose_message_text").click()
+time.sleep(2)
+receiver_device.xpath('//*[@content-desc="सेटिंग"]/android.widget.FrameLayout[1]/android.widget.FrameLayout[1]/android.widget.ImageView[1]').click()
+time.sleep(2)
+receiver_device(resourceId="android:id/title", text="Dictionary").click()
+time.sleep(2)
+receiver_device(text="Personal dictionary").click()
+time.sleep(2)
+receiver_device(resourceId="android:id/title", text="All languages").click()
+time.sleep(2)
+receiver_device(resourceId="com.google.android.inputmethod.latin:id/0_resource_name_obfuscated").click()
+time.sleep(2)
+receiver_device(text="Type a word").set_text("Hello")
+time.sleep(2)
+receiver_device(text="Optional shortcut").set_text("Hi")
+time.sleep(2)
+receiver_device(resourceId="com.android.systemui:id/back").click()
+time.sleep(2)
+receiver_device(resourceId="com.android.systemui:id/back").click()
+time.sleep(2)
+receiver_device(resourceId="com.google.android.inputmethod.latin:id/0_resource_name_obfuscated", text="Hello").click()
+time.sleep(2)
+receiver_device(resourceId="com.google.android.inputmethod.latin:id/0_resource_name_obfuscated", description="Delete").click()
+time.sleep(2)
+receiver_device(resourceId="com.android.systemui:id/back").click()
+time.sleep(2)
+receiver_device(resourceId="com.android.systemui:id/back").click()
+time.sleep(2)
+receiver_device(resourceId="com.android.systemui:id/back").click()
+time.sleep(2)
+receiver_device(resourceId="com.android.systemui:id/back").click()
+time.sleep(2)
+receiver_device(resourceId="com.android.systemui:id/back").click()
+time.sleep(2)
+receiver_device(resourceId="com.android.systemui:id/back").click()
+time.sleep(2)
+receiver_device(resourceId="com.android.systemui:id/back").click()
+print("Testcase MSG_20 is pass")
+################################################Testcase21#####################################################################
+if receiver_device(text="Shubham").exists():
+ print("Contacts are available")
+else:
+ print("Contacts are not available")
+print("Test case MSG_21 is pass")
+
+####################################################Testcase45#################################################################
+receiver_device(text="Messages").click()
+time.sleep(2)
+# Click on the "AAAAA" element
+receiver_device(text="AAAAA").click()
+time.sleep(2)  # Wait for 2 seconds
+
+receiver_device(resourceId="com.google.android.apps.messaging:id/compose_message_text").click()
+time.sleep(2)  # Wait for 2 seconds
+
+# Check if the "Gboard" element exists and click on it
+if receiver_device(resourceId="com.google.android.inputmethod.latin:id/0_resource_name_obfuscated", text="1/4").exists():
+    print("Gboard exist")
+print("Testcase MSG_45 pass")
+receiver_device(resourceId="com.android.systemui:id/back").click()
+time.sleep(2)
+receiver_device(resourceId="com.android.systemui:id/back").click()
+
+
+#######################################################Testcase46############################################################
+
+# Click on the "AAAAA" element
+receiver_device(text="AAAAA").click()
+time.sleep(2)  # Wait for 2 seconds
+receiver_device(resourceId="com.google.android.apps.messaging:id/compose_message_text").set_text("this is shubham pal singh")
+time.sleep(2)
+receiver_device(resourceId="com.google.android.apps.messaging:id/send_message_button_container").click()
+time.sleep(2)
+print("Test case MSG_46 pass")
+receiver_device(resourceId="com.android.systemui:id/back").click()
+##############################################Testcase47######################################################################
+# Click on the "AAAAA" element
+#receiver_device(text="AAAAA").click()
+#time.sleep(2)  # Wait for 2 seconds
+
+#element = receiver_device(text="this is shubham pal singh")
+#element.long_click()
+#time.sleep(2)
+#receiver_device(resourceId="com.google.android.apps.messaging:id/action_bar_overflow").click()
+#time.sleep(2)
+#receiver_device.xpath('//android.widget.ListView/android.widget.LinearLayout[1]/android.widget.LinearLayout[1]/android.widget.RelativeLayout[1]').click()
+#time.sleep(2)
+#receiver_device.xpath('//*[@content-desc="Shubham  Messages"]/android.widget.ImageView[1]').click()
+#time.sleep(2)
+#receiver_device(resourceId="com.google.android.apps.messaging:id/send_message_button_container").click()
+#time.sleep(2)
+#print("Testcase MSG_47 is pass")
+#time.sleep(2)
+receiver_device(resourceId="com.android.systemui:id/back").click()
+#########################################################Testcase49############################################################
+receiver_device(text="Shubham").click()
+time.sleep(2)
+receiver_device(resourceId="com.google.android.apps.messaging:id/compose_message_text").set_text("Shubham pal singh")
+time.sleep(2)
+receiver_device(resourceId="com.google.android.apps.messaging:id/send_message_button_container").click()
+time.sleep(2)
+receiver_device(resourceId="com.android.systemui:id/back").click()
+time.sleep(2)
+receiver_device(resourceId="com.android.systemui:id/back").click()
+print("Test case MSG_49 pass")
+
+    
+##########################################Testcase52##########################################################################
+
+receiver_device(text="Shubham").click()
+time.sleep(2)
+
+receiver_device(resourceId="com.google.android.apps.messaging:id/camera_gallery_button").click()
+time.sleep(2)
+
+receiver_device(resourceId="com.google.android.apps.messaging:id/open_fullscreen_camera_button").click()
+time.sleep(2)
+
+receiver_device.xpath('//android.widget.ListView/android.widget.LinearLayout[1]').click()
+time.sleep(2)
+
+receiver_device(resourceId="com.mediatek.camera:id/iv_shutter_button_bg").click()
+time.sleep(2)
+receiver_device(resourceId="com.mediatek.camera:id/btn_save").click()
+time.sleep(2)
+receiver_device(resourceId="com.google.android.apps.messaging:id/send_message_button_container").click()
+time.sleep(10)
+
+if receiver_device(resourceId="com.google.android.apps.messaging:id/status_icon").exists():
+    print("Photo sent by recording")
+else:
+    print("photo not sent by recording")
+print("Test case MSG_52 pass")
+receiver_device(resourceId="com.android.systemui:id/back").click()
+time.sleep(2)
+receiver_device(resourceId="com.android.systemui:id/back").click()
+time.sleep(2)
+receiver_device(resourceId="com.android.systemui:id/back").click()
+#################################################Testcase57###################################################################
+import uiautomator2 as ui2
+import time
+
+receiver_device(scrollable=True).scroll.toEnd(20)
+time.sleep(2)
+receiver_device(text="OfficeSuite").click()
+time.sleep(2)
+if receiver_device(text="Getting_Started.pdf").exists():
+    print("Pdf available")
+else:
+    print("Pdf not available")
+print("Test case MSG_57 pass")
+time.sleep(2)
+receiver_device(resourceId="com.android.systemui:id/center_group").click()
+receiver_device(resourceId="com.android.systemui:id/back").click()
+time.sleep(2)
+receiver_device(resourceId="com.android.systemui:id/back").click()
+#################################################Testcase58##################################################################
+
+time.sleep(2)  # Wait for 2 seconds
+
+# Click on the "Messages" element
+receiver_device(text="Messages").click()
+time.sleep(2)  # Wait for 2 seconds
+
+receiver_device(text="Shubham").click()
+time.sleep(2)
+
+receiver_device(resourceId="com.google.android.apps.messaging:id/compose_message_text").set_text("Hello this is shubham pal singh")
+time.sleep(2)
+
+receiver_device(resourceId="com.google.android.apps.messaging:id/send_message_button_container").click()
+time.sleep(2)
+
+# Capture a screenshot
+screenshot = receiver_device.screenshot()
+
+# Get the color of a specific pixel on the screen
+pixel_color = screenshot.getpixel((100, 100))  # Change the coordinates as needed
+
+# Check if the screen is black (all RGB values are 0)
+if pixel_color == (0, 0, 0):
+    print("Screen is black")
+elif pixel_color == (255, 0, 0):  # Assuming red color is (255, 0, 0)
+    print("Screen is red")
+else:
+    print("Screen is neither black nor red")
+
+if receiver_device(resourceId="com.google.android.apps.messaging:id/message_lock_icon").exists():
+    print("MESSAGE SENT WITHOUT ANY LAG")
+else:
+    print("MESSAGE SENT WITH ANY LAG")
+print("Test case MSG_58 is pass")
+receiver_device(resourceId="com.android.systemui:id/back").click()
+time.sleep(2)
+receiver_device(resourceId="com.android.systemui:id/back").click()
+
+##############################################Testcase59#######################################################################
+receiver_device(text="Shubham").click()
+time.sleep(2)
+receiver_device(resourceId="com.google.android.apps.messaging:id/compose_message_text").set_text("Thisisshubhampalsingh")
+time.sleep(2)
+receiver_device(resourceId="com.google.android.apps.messaging:id/send_message_button_container").click()
+time.sleep(2)
+if receiver_device(resourceId="com.google.android.apps.messaging:id/status_icon").exists():
+    print("Message delivered without interrupt")
+else:
+    print("The message not delivered ")
+    time.sleep(2)
+# Capture a screenshot
+screenshot = receiver_device.screenshot()
+
+# Get the color of a specific pixel on the screen
+pixel_color = screenshot.getpixel((100, 100))  # Change the coordinates as needed
+
+# Check if the screen is black (all RGB values are 0)
+if pixel_color == (0, 0, 0):
+    print("Screen is black")
+elif pixel_color == (255, 0, 0):  # Assuming red color is (255, 0, 0)
+    print("Screen is red")
+else:
+    print("Screen is neither black nor red")
+print("The test case MSG_59 is pass")
+receiver_device(resourceId="com.android.systemui:id/back").click()
+time.sleep(2)
+receiver_device(resourceId="com.android.systemui:id/back").click()
+
+##############################################################Testcase60#######################################################
+time.sleep(2)  # Wait for 2 seconds
+receiver_device(text="Shubham").click()
+time.sleep(2)
+receiver_device(resourceId="com.google.android.apps.messaging:id/plus_button").click()
+time.sleep(1)
+
+receiver_device(resourceId="com.google.android.apps.messaging:id/shortcut_title", text="GIFs").click()
+time.sleep(2)
+
+receiver_device(resourceId="com.android.systemui:id/back").click()
+time.sleep(2)
+receiver_device(resourceId="com.android.systemui:id/back").click()
+# Capture a screenshot
+screenshot = receiver_device.screenshot()
+
+# Get the color of a specific pixel on the screen
+pixel_color = screenshot.getpixel((100, 100))  # Change the coordinates as needed
+
+# Check if the screen is black (all RGB values are 0)
+if pixel_color == (0, 0, 0):
+    print("Screen is black")
+elif pixel_color == (255, 0, 0):  # Assuming red color is (255, 0, 0)
+    print("Screen is red")
+else:
+    print("Screen is neither black nor red")
+
+if receiver_device(resourceId="com.google.android.apps.messaging:id/message_lock_icon").exists():
+    print("MESSAGE SENT WITHOUT ANY LAG")
+else:
+    print("MESSAGE SENT WITH ANY LAG")
+print("Test case MSG_60 pass")
+time.sleep(2)
+receiver_device(resourceId="com.android.systemui:id/back").click()
+time.sleep(2)
+receiver_device(resourceId="com.android.systemui:id/center_group").click()
+
+##################################################Testcase62###################################################################
+time.sleep(2)  # Wait for 2 seconds
+
+receiver_device(text="Phone").click()
+time.sleep(2)
+receiver_device(resourceId="com.google.android.dialer:id/dialpad_fab").click()
+time.sleep(2)
+receiver_device(text='8').click()
+receiver_device(text='5').click()
+receiver_device(text='2').click()
+receiver_device(text='7').click()
+receiver_device(text='7').click()
+receiver_device(text='4').click()
+receiver_device(text='6').click()
+receiver_device(text='8').click()
+receiver_device(text='9').click()
+receiver_device(text='7').click()
+time.sleep(2)
+receiver_device(resourceId="com.google.android.dialer:id/dialpad_voice_call_button").click()
+time.sleep(2)
+receiver_device.press("home")    
+# Click on the "Messages" element
+receiver_device(text="Messages").click()
+time.sleep(2)  # Wait for 2 second
+
+receiver_device(text="Shubham").click()
+time.sleep(2)
+
+receiver_device(resourceId="com.google.android.apps.messaging:id/plus_button").click()
+time.sleep(1)
+
+receiver_device(resourceId="com.google.android.apps.messaging:id/shortcut_title", text="GIFs").click()
+time.sleep(2)
+receiver_device(resourceId="com.android.systemui:id/back").click()
+time.sleep(2)
+receiver_device(resourceId="com.android.systemui:id/back").click()
+
+if receiver_device(resourceId="com.google.android.apps.messaging:id/status_icon").exists():
+    print("The Status report is sent")
+else:
+    print("The status report is not sent")
+# Capture a screenshot
+screenshot = receiver_device.screenshot()
+
+# Get the color of a specific pixel on the screen
+pixel_color = screenshot.getpixel((100, 100))  # Change the coordinates as needed
+
+# Check if the screen is black (all RGB values are 0)
+if pixel_color == (0, 0, 0):
+    print("Screen is black")
+elif pixel_color == (255, 0, 0):  # Assuming red color is (255, 0, 0)
+    print("Screen is red")
+else:
+    print("Screen is neither black nor red")
+
+if receiver_device(resourceId="com.google.android.apps.messaging:id/message_lock_icon").exists():
+    print("MESSAGE SENT WITHOUT ANY LAG")
+else:
+    print("MESSAGE SENT WITH ANY LAG")
+print("Test case MSG_62 pass")
+time.sleep(2)
+receiver_device(resourceId="com.android.systemui:id/back").click()
+time.sleep(2)
+receiver_device(resourceId="com.android.systemui:id/back").click()
+time.sleep(2)
+receiver_device(resourceId="com.android.systemui:id/back").click()
